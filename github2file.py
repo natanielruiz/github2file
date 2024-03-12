@@ -66,12 +66,6 @@ def download_repo(repo_url, output_file):
             # Skip test files based on content and files with insufficient substantive content
             if is_test_file(file_content) or not has_sufficient_content(file_content):
                 continue
-
-            try:
-                file_content = remove_comments_and_docstrings(file_content)
-            except SyntaxError:
-                # Skip files with syntax errors
-                continue
             
             outfile.write(f"# File: {file_path}\n")
             outfile.write(file_content)
